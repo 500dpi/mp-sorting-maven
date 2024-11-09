@@ -1,22 +1,38 @@
-# mp-sorting-maven
+## Mini-Project #8: Sorting Algorithms
 
-An exploration of sorting in Java.
+### Authors
 
-Authors
+- *Sara Jaljaa*
+- *Samuel A. Rebelsky (starter code)*
 
-* Your name here.
-* Samuel A. Rebelsky (starter code)
+### Overview
 
-Acknowledgements
+Four traditional sorting algorithms:
 
-* _Forthcoming_.
+- Insertion sort: Swap an unsorted element into the next sorted portion of the collection,
+then compare the new element to the sorted portion to find the correct sorted position.
 
-This code may be found at <https://github.com/USERNAME/mp-sorting-maven>. The original code may be found at <https://github.com/Grinnell-CSC207/mp-sorting-maven>.
+- Selection sort: Find the next element smallest element and swap with the first unsorted element.
 
-Description of custom sorting algorithm
----------------------------------------
+- Merge sort: Divide the collection in half, then continue to divide the collections until they
+are singletons that are divided in order of smaller->larger; sort them, then re-combine the initial
+halves of the collection.
 
-Notes on using Copilot (or other AI)
-------------------------------------
+- Quicksort: Like merge sort, except the initial division is done at a ranodmly-selected pivot point.
 
-_This section is optional_
+Along with an additional created algorithm:
+
+- (Description of custom sorting algorithm)
+
+---
+
+### Acknowledgements
+
+- ...
+
+---
+
+### Source
+
+- This project: [500dpi/mp-sorting-maven](https://github.com/500dpi/mp-sorting-maven)
+- Original: [Grinnell-CSC207/mp-sorting-maven](https://github.com/Grinnell-CSC207/mp-sorting-maven)
