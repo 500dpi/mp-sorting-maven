@@ -9,7 +9,7 @@
 
 Four traditional sorting algorithms:
 
-- Insertion sort: Swap an unsorted element into the next sorted portion of the collection,
+- Insertion sort: Swap an unsorted element into the last sorted portion of the collection,
 then compare the new element to the sorted portion to find the correct sorted position.
 
 - Selection sort: Find the next smallest element and swap with the first unsorted element.
