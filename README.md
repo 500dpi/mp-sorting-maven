@@ -12,11 +12,10 @@ Four traditional sorting algorithms:
 - Insertion sort: Swap an unsorted element into the next sorted portion of the collection,
 then compare the new element to the sorted portion to find the correct sorted position.
 
-- Selection sort: Find the next element smallest element and swap with the first unsorted element.
+- Selection sort: Find the next smallest element and swap with the first unsorted element.
 
 - Merge sort: Divide the collection in half, then continue to divide the collections until they
-are singletons that are divided in order of smaller->larger; sort them, then re-combine the initial
-halves of the collection.
+are singletons; re-combine the initial halves of the collection.
 
 - Quicksort: Like merge sort, except the initial division is done at a ranodmly-selected pivot point.
 
