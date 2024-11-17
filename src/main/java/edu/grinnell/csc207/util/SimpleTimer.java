@@ -13,7 +13,7 @@ public class SimpleTimer {
   /**
    * The time the timer started.
    */
-  long start;    
+  long start;
 
   /**
    * The total elapsed time.

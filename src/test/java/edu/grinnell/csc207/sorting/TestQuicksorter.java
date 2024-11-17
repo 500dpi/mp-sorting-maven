@@ -11,8 +11,8 @@ public class TestQuicksorter extends TestSorter {
    */
   @BeforeAll
   static void setup() {
-    stringSorter = new Quicksorter<String>((x,y) -> x.compareTo(y));
-    intSorter = new Quicksorter<Integer>((x,y) -> x.compareTo(y));
+    stringSorter = new Quicksorter<String>((x, y) -> x.compareTo(y));
+    intSorter = new Quicksorter<Integer>((x, y) -> x.compareTo(y));
   } // setup()
 
 } // class TestQuicksorter

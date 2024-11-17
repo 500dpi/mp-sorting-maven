@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * Rather, you should subclass it and initialize stringSorter and
  * intSorter in a static @BeforeAll method.
  *
- * @author Your Name
+ * @author Sara Jaljaa
  * @uathor Samuel A. Rebelsky
  */
 public class TestSorter {
@@ -120,4 +120,69 @@ public class TestSorter {
     ArrayUtils.permute(original);
     assertSorts(expected, original, intSorter);
   } // permutedIntegers
+
+  @Test
+  public void emptyTest() {
+    if (null == intSorter) {
+      return;
+    } // if
+    Integer[] original = {};
+    Integer[] expected = {};
+    assertSorts(expected, original, intSorter);
+  } // emptyTest
+
+  @Test
+  public void largeTest() {
+    int SIZE = 10000;
+    if (null == intSorter) {
+      return;
+    } // if
+    Integer[] original = new Integer[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+      original[i] = i + 1;
+    }
+    Integer[] expected = original.clone();
+    ArrayUtils.permute(original);
+    assertSorts(expected, original, intSorter);
+  } // largerTest()
+
+  @Test
+    public void largerTest() {
+      int SIZE = 100000;
+      if (null == intSorter) {
+        return;
+      } // if
+      Integer[] original = new Integer[SIZE];
+      for (int i = 0; i < SIZE; i++) {
+        original[i] = i + 1;
+      }
+      Integer[] expected = original.clone();
+      ArrayUtils.permute(original);
+      assertSorts(expected, original, intSorter);
+    } // largerTest()
+
+    @Test
+    public void duplicateTest() {
+      if (null == intSorter) {
+        return;
+      } // if
+      Integer[] original = {0, 0, 3, 3, 1, 0};
+      Integer[] expected = {0, 0, 0, 1, 3, 3};
+      assertSorts(expected, original, intSorter);
+    } // duplicateTest()
+
+    @Test
+    public void negativeTest() {
+      int SIZE = 1000;
+      if (null == intSorter) {
+        return;
+      } // if
+      Integer[] original = new Integer[SIZE];
+      for (int i = 0; i < SIZE; i++) {
+        original[i] = i - 500;
+      }
+      Integer[] expected = original.clone();
+      ArrayUtils.permute(original);
+      assertSorts(expected, original, intSorter);
+    } // emptyTest
 } // class TestSorter

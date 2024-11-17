@@ -11,8 +11,8 @@ public class TestFakeSorter extends TestSorter {
    */
   @BeforeAll
   static void setup() {
-    stringSorter = new FakeSorter<String>((x,y) -> x.compareTo(y));
-    intSorter = new FakeSorter<Integer>((x,y) -> x.compareTo(y));
+    stringSorter = new FakeSorter<String>((x, y) -> x.compareTo(y));
+    intSorter = new FakeSorter<Integer>((x, y) -> x.compareTo(y));
   } // setup()
 
 } // class TestFakeSorter
