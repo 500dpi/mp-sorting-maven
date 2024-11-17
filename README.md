@@ -17,11 +17,11 @@ then compare the new element to the sorted portion to find the correct sorted po
 - Merge sort: Divide the collection in half, then continue to divide the collections until they
 are singletons; re-combine the initial halves of the collection.
 
-- Quicksort: Like merge sort, except the initial division is done at a ranodmly-selected pivot point.
+- Quicksort: uses a pivot point to divide an conquer subarrays.
 
 Along with an additional created algorithm:
 
-- (Description of custom sorting algorithm)
+- An algorithm that sorts using a modified Merge sort that limits uncessary calls to merge already-sorted arrays + switches to insertion sort when the array is less than 60 elements.
 
 ---
 
