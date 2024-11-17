@@ -17,17 +17,19 @@ then compare the new element to the sorted portion to find the correct sorted po
 - Merge sort: Divide the collection in half, then continue to divide the collections until they
 are singletons; re-combine the initial halves of the collection.
 
-- Quicksort: uses a pivot point to divide an conquer subarrays.
+- Quicksort: A divide-and-conquer algorithm that uses a random pivot point to divide each subarray,
+swapping the elements in-place.
 
 Along with an additional created algorithm:
 
-- An algorithm that sorts using a modified Merge sort that limits uncessary calls to merge already-sorted arrays + switches to insertion sort when the array is less than 60 elements.
+- A modified Merge sort algorithm that limits unecessary calls to merge already-sorted arrays and switches
+to an insertion sort algorithm when the array is less than 60 elements.
 
 ---
 
 ### Acknowledgements
 
-- ...
+- [Array javadocs, for referencing](https://docs.oracle.com/javase/8/docs/api/?java/util/Arrays.html)
 
 ---
 
