@@ -1,6 +1,7 @@
 package edu.grinnell.csc207.sorting;
 
 import java.util.Comparator;
+import edu.grinnell.csc207.main.SortTools;
 
 /**
  * Something that sorts using selection sort.
@@ -9,9 +10,11 @@ import java.util.Comparator;
  *   The types of values that are sorted.
  *
  * @author Samuel A. Rebelsky
+ * @author Sara Jaljaa
  */
 
 public class SelectionSorter<T> implements Sorter<T> {
+
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
@@ -55,6 +58,36 @@ public class SelectionSorter<T> implements Sorter<T> {
    */
   @Override
   public void sort(T[] values) {
-    // STUB
+    if (values.length < 2) {
+      return;
+    } // if
+    for (int unsorted = 0; unsorted < values.length - 1; unsorted++) {
+      select(values, unsorted);
+    } // for
   } // sort(T[])
+
+  /**
+   * Finds the next value to be ordered given an array and the previous
+   * ordered element.
+   *
+   * @param values
+   *    An array with elements.
+   * @param unsorted
+   *    The last sorted index/first unsorted index.
+   */
+  private void select(T[] values, int unsorted) {
+    // To keep track of the next value to be ordered's index
+    int nextSorted = unsorted;
+
+    // Iterate through the array to find the next value to be ordered
+    for (int sorted = unsorted; sorted < values.length; sorted++) {
+      if (order.compare(values[nextSorted], values[sorted]) > 0) {
+        nextSorted = sorted;
+      } // if
+    } // for
+
+    // Swap the next ordered element to the first unsorted (or, last sorted)
+    // index of the array
+    SortTools.swap(values, nextSorted, unsorted);
+  } // select(T[], int)
 } // class SelectionSorter

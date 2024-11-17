@@ -1,19 +1,31 @@
 package edu.grinnell.csc207.sorting;
 
-import java.util.Comparator;
 import java.util.Arrays;
+import java.util.Comparator;
+import edu.grinnell.csc207.main.SortTools;
 
 /**
- * Something that sorts using merge sort.
+ * Something that sorts using a modified Merge sort algorithm that
+ * limits uncessary calls to merge already-sorted arrays and switches
+ * to insertion sort when the array is less than 75 elements.
  *
  * @param <T>
  *   The types of values that are sorted.
  *
- * @author Samuel A. Rebelsky
  * @author Sara Jaljaa
  */
 
-public class MergeSorter<T> implements Sorter<T> {
+public class JaljaaSaraSorter<T> implements Sorter<T> {
+
+  // +-----------+---------------------------------------------------
+  // | Constants |
+  // +-----------+
+
+  /**
+   * The minimum size an array has to reach before switching from merge
+   * sort to insertion sort.
+   */
+  private static final int LIMIT = 60;
 
   // +--------+------------------------------------------------------
   // | Fields |
@@ -35,9 +47,9 @@ public class MergeSorter<T> implements Sorter<T> {
    *   The order in which elements in the array should be ordered
    *   after sorting.
    */
-  public MergeSorter(Comparator<? super T> comparator) {
+  public JaljaaSaraSorter(Comparator<? super T> comparator) {
     this.order = comparator;
-  } // MergeSorter(Comparator)
+  } // JaljaaSaraSorter(Comparator)
 
   // +---------+-----------------------------------------------------
   // | Methods |
@@ -72,12 +84,17 @@ public class MergeSorter<T> implements Sorter<T> {
     sort(left);
     sort(right);
 
-    // Merge the subarrays together
-    merge(values, left, right, mid);
+    // When the array is small enough, switch to insertion sort
+    if (values.length <= LIMIT) {
+      insertionSort(values);
+    } else {
+      merge(values, left, right, mid);
+    } // elif
   } // sort(T[])
 
   /**
-   * Merge the subarrays together.
+   * Merge subarrays together, checking if they arrays are pre-sorted before
+   * merging.
    *
    * @param values
    *    The merged array.
@@ -96,6 +113,20 @@ public class MergeSorter<T> implements Sorter<T> {
     // Bounds for the left and right subarrays
     int lb = midpoint;
     int rb = values.length - midpoint;
+
+    int compare = order.compare(left[lb - 1], right[0]);
+
+    // Check if the array is already sorted
+    if (compare <= 0) {
+      for (; i < left.length; i++, tmp++) {
+        values[tmp] = left[i];
+      } // for
+
+      for (; j < right.length; j++, tmp++) {
+        values[tmp] = right[j];
+      } // for
+      return;
+    } // if
 
     // Add elements in order by comparing elements of
     // each subarray; if an element is larger, it is compared to
@@ -120,4 +151,33 @@ public class MergeSorter<T> implements Sorter<T> {
       values[tmp] = right[j];
     } // for
   } // merge(T[], T[], T[], int)
-} // class MergeSorter
+
+  /**
+   * Sort by inserting the next ordered value in the last sorted
+   * position until all the elements are sorted.
+   *
+   * @param values
+   *    The array to sort.
+   */
+  private void insertionSort(T[] values) {
+    for (int unsorted = 1; unsorted < values.length; unsorted++) {
+      insert(values, unsorted);
+    } // for
+  } // insertionSort(T[])
+
+  /**
+   * Find the next walue to insert into the array.
+   *
+   * @param values
+   *    The array of elements.
+   * @param unsorted
+   *    The beginning of the unsorted index of the array.
+   */
+  private void insert(T[] values, int unsorted) {
+    for (int sorted = unsorted; sorted > 0
+        && (order.compare(values[sorted - 1], values[sorted]) > 0);) {
+      SortTools.swap(values, (sorted - 1), sorted);
+      sorted--;
+    } // for
+  } // insert(T[])
+} // class JaljaaSaraSorter

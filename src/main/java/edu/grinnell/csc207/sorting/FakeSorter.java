@@ -5,7 +5,7 @@ import edu.grinnell.csc207.util.ArrayUtils;
 import java.util.Comparator;
 
 /**
- * Something that fails to sort.  Intended primarily to allow us to watch
+ * Something that fails to sort. Intended primarily to allow us to watch
  * tests fail.
  *
  * @param <T>
