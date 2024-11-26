@@ -72,9 +72,33 @@ public class Quicksorter<T> implements Sorter<T> {
     quicksort(values, 0, values.length);
   } // sort(T[])
 
-  private int random(int lb, int ub) {
-    return this.rnd.nextInt(ub - lb) + lb;
-  } // random(Random, int, int)
+  /**
+   * Find the median of 3 values to pick a better pivot.
+   *
+   * @param values
+   *    The array to sort.
+   * @param lb
+   *    The lower bound of the subarray (inclusive).
+   * @param ub
+   *    The upper bound of the subarray (exclusive).
+   * @return
+   *    The median pivot value.
+   */
+  @SuppressWarnings({"unchecked"})
+  public T median(T[] values, int lb, int ub) {
+    T[] pivot = (T[]) new Object[3];
+
+    for (int i = 0; i < 3; i++) {
+      pivot[i] = values[this.rnd.nextInt(ub - lb) + lb];
+    } // for
+
+    for (int i = 0; i < 2; i++) {
+      if (this.order.compare(pivot[i + 1], pivot[i]) > 0) {
+        ArrayUtils.swap(pivot, i, i + 1);
+      } // if
+    } // for
+    return pivot[1];
+  } // median(T[], int, int)
 
   /**
    * The recursive portion of the quicksort algorithm that
@@ -93,10 +117,7 @@ public class Quicksorter<T> implements Sorter<T> {
     } // if
 
     // For better pivot-picking
-    int index = (random(lb, ub) + random(lb, ub) + random(lb, ub)) / 3;
-
-    // Find pivot value and then partition the array
-    T pivot = values[index];
+    T pivot = median(values, lb, ub);
     int[] bound = partition(values, pivot, lb, ub);
 
     // Recurse over subarrays containing elements less than the pivot
